@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import './Products.css';
 
 export default function Products() {
   const [products, setProducts] = useState([]);
@@ -10,7 +11,6 @@ export default function Products() {
   const limit = 5;
 
   useEffect(() => {
-    
     axios.get('http://localhost:3000/products')
       .then(response => {
         setProducts(response.data);
@@ -54,17 +54,18 @@ export default function Products() {
     <>
       <div className="products-container">
         <h1>Products</h1>
-        <ul>
+        <ul className="product-list">
           {currentProducts.map(product => (
-            <li key={product.id}>
+            <li key={product.id} className="product-item">
               {editProductId === product.id ? (
-                <div>
+                <div className="edit-form">
                   <input
                     type="text"
                     name="name"
                     value={editedProduct.name}
                     onChange={handleChange}
                     placeholder="Name"
+                    className="edit-input"
                   />
                   <input
                     type="number"
@@ -72,34 +73,36 @@ export default function Products() {
                     value={editedProduct.price}
                     onChange={handleChange}
                     placeholder="Price"
+                    className="edit-input"
                   />
                   <textarea
                     name="description"
                     value={editedProduct.description}
                     onChange={handleChange}
                     placeholder="Description"
+                    className="edit-textarea"
                   />
-                  <button onClick={handleSave}>Save</button>
+                  <button onClick={handleSave} className="save-button">Save</button>
                 </div>
               ) : (
                 <>
                   <h2>{product.name} - ${product.price}</h2>
                   <p>{product.description}</p>
-                  <button onClick={() => handleEditClick(product)}>Edit</button>
+                  <button onClick={() => handleEditClick(product)} className="edit-button">Edit</button>
                 </>
               )}
             </li>
           ))}
         </ul>
       </div>
-      <div className="pagination" style={{ display: 'flex', justifyContent: 'space-between' }}>
-        <button onClick={previousPage} disabled={page === 1}>
+      <div className="pagination">
+        <button onClick={previousPage} disabled={page === 1} className="pagination-button">
           Previous
         </button>
         <span>
           Page {page} of {totalPages}
         </span>
-        <button onClick={nextPage} disabled={page === totalPages}>
+        <button onClick={nextPage} disabled={page === totalPages} className="pagination-button">
           Next
         </button>
       </div>
