@@ -6,6 +6,7 @@ export default function Products() {
   const [products, setProducts] = useState([]);
   const [page, setPage] = useState(1);
   const [editProductId, setEditProductId] = useState(null);
+
   const [editedProduct, setEditedProduct] = useState({ name: '', price: '', description: '' });
 
   const limit = 5;
