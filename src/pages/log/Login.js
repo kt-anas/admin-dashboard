@@ -1,11 +1,8 @@
 import React, { useState } from 'react';
-
 import { useNavigate } from 'react-router-dom';
-
- import './Login.css'
+import styles from './Login.module.css';
 
 export default function Login() {
-    
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -31,7 +28,7 @@ export default function Login() {
   const validate = () => {
     const newErrors = { email: '', password: '' };
     let valid = true;
- 
+
     if (!formData.email) {
       newErrors.email = 'Email is required';
       valid = false;
@@ -40,7 +37,6 @@ export default function Login() {
       valid = false;
     }
 
-    
     if (!formData.password) {
       newErrors.password = 'Password is required';
       valid = false;
@@ -54,16 +50,13 @@ export default function Login() {
   };
 
   const handleSubmit = async (e) => {
-
     e.preventDefault();
     setIsSubmitting(true);
 
     if (validate()) {
-     
       if (formData.email === 'admin@gmail.com' && formData.password === '123456') {
-       
-          setTimeout(() => navigate('/dashboard'), 1000);
-          alert('Welcome admin');
+        setTimeout(() => navigate('/dashboard'), 1000);
+        alert('Welcome admin');
       } else {
         alert('Invalid email or password');
       }
@@ -73,34 +66,36 @@ export default function Login() {
   };
 
   return (
-    <div className="container">
-      <form className="login-form" onSubmit={handleSubmit}>
-        <h2>Admin Login</h2>
-        <div className="form-group">
-          <label htmlFor="email">Email</label>
+    <div className={styles.container}>
+      <form className={styles.loginForm} onSubmit={handleSubmit}>
+        <h2 className={styles.title}>Admin Login</h2>
+        <div className={styles.formGroup}>
+          <label htmlFor="email" className={styles.label}>Email</label>
           <input
             type="email"
             name="email"
             id="email"
             value={formData.email}
             onChange={handleChange}
+            className={styles.input}
           />
-          {errors.email && <div className="error-message">{errors.email}</div>}
+          {errors.email && <div className={styles.errorMessage}>{errors.email}</div>}
         </div>
-        <div className="form-group">
-          <label htmlFor="password">Password</label>
+        <div className={styles.formGroup}>
+          <label htmlFor="password" className={styles.label}>Password</label>
           <input
             type="password"
             name="password"
             id="password"
             value={formData.password}
             onChange={handleChange}
+            className={styles.input}
           />
-          {errors.password && <div className="error-message">{errors.password}</div>}
+          {errors.password && <div className={styles.errorMessage}>{errors.password}</div>}
         </div>
         <button
           type="submit"
-          className="submit-btn"
+          className={`${styles.loginButton} ${isSubmitting ? styles.disabledButton : ''}`}
           disabled={isSubmitting}
         >
           {isSubmitting ? 'Logging in...' : 'Login'}
