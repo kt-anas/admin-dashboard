@@ -1,17 +1,17 @@
 import React from 'react';
-import './Dashboard.css';
-import Products from './Products';
+ import  styles from './Dashboard.module.css'
+ import Products from '../../components/Products';
 
 export default function Dashboard() {
     return (
-        <div className="dashboard-container">
-            <section className="dashboard-section">
-                <nav className="dashboard-nav">
+        <div className={styles["dashboard-container"]}>
+            <section className={styles["dashboard-header"]}>
+                <nav className={styles["dashboard-nav"]}>
                     <h1>Admin Dashboard</h1>
                 </nav>
             </section>
-            <section className="dashboard-section">
-                <Products />
+            <section className={styles["dashboard-content"]}>
+                <Products/>
             </section>
         </div>
     );
