@@ -1,14 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-import './Products.css';
+import styles from './Products.module.css';
 
 export default function Products() {
   const [products, setProducts] = useState([]);
   const [page, setPage] = useState(1);
   const [editProductId, setEditProductId] = useState(null);
-
   const [editedProduct, setEditedProduct] = useState({ name: '', price: '', description: '' });
-
   const limit = 5;
 
   useEffect(() => {
@@ -53,20 +51,20 @@ export default function Products() {
 
   return (
     <>
-      <div className="products-container">
+      <div className={styles.products}>
         <h1>Products</h1>
-        <ul className="product-list">
+        <ul className={styles.productList}>
           {currentProducts.map(product => (
-            <li key={product.id} className="product-item">
+            <li key={product.id} className={styles.productItem}>
               {editProductId === product.id ? (
-                <div className="edit-form">
+                <div className={styles.editForm}>
                   <input
                     type="text"
                     name="name"
                     value={editedProduct.name}
                     onChange={handleChange}
                     placeholder="Name"
-                    className="edit-input"
+                    className={styles.editInput}
                   />
                   <input
                     type="number"
@@ -74,36 +72,36 @@ export default function Products() {
                     value={editedProduct.price}
                     onChange={handleChange}
                     placeholder="Price"
-                    className="edit-input"
+                    className={styles.editInput}
                   />
                   <textarea
                     name="description"
                     value={editedProduct.description}
                     onChange={handleChange}
                     placeholder="Description"
-                    className="edit-textarea"
+                    className={styles.editInput}
                   />
-                  <button onClick={handleSave} className="save-button">Save</button>
+                  <button onClick={handleSave} className={styles.editButton}>Save</button>
                 </div>
               ) : (
                 <>
                   <h2>{product.name} - ${product.price}</h2>
                   <p>{product.description}</p>
-                  <button onClick={() => handleEditClick(product)} className="edit-button">Edit</button>
+                  <button onClick={() => handleEditClick(product)} className={styles.editButton}>Edit</button>
                 </>
               )}
             </li>
           ))}
         </ul>
       </div>
-      <div className="pagination">
-        <button onClick={previousPage} disabled={page === 1} className="pagination-button">
+      <div className={styles.pagination}>
+        <button onClick={previousPage} disabled={page === 1} className={styles.paginationButton}>
           Previous
         </button>
         <span>
           Page {page} of {totalPages}
         </span>
-        <button onClick={nextPage} disabled={page === totalPages} className="pagination-button">
+        <button onClick={nextPage} disabled={page === totalPages} className={styles.paginationButton}>
           Next
         </button>
       </div>
