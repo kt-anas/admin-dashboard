@@ -38,10 +38,10 @@ export default function Login() {
     }
 
     if (!formData.password) {
-      newErrors.password = 'Password is required';
+      newErrors.password = 'Password is required' ;
       valid = false;
     } else if (formData.password.length < 6) {
-      newErrors.password = 'Password must be at least 6 characters';
+      newErrors.password = 'Password must be at least 6 characters ';
       valid = false;
     }
 
