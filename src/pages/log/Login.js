@@ -38,10 +38,10 @@ export default function Login() {
     }
 
     if (!formData.password) {
-      newErrors.password = 'Password is required';
+      newErrors.password = 'Password is required' ;
       valid = false;
     } else if (formData.password.length < 6) {
-      newErrors.password = 'Password must be at least 6 characters';
+      newErrors.password = 'Password must be at least 6 characters ';
       valid = false;
     }
 
@@ -54,7 +54,7 @@ export default function Login() {
     setIsSubmitting(true);
 
     if (validate()) {
-      if (formData.email === 'admin@gmail.com' && formData.password === '123456') {
+      if (formData.email === 'admin@gmail.com' && formData.password === '12345678') {
         setTimeout(() => navigate('/dashboard'), 1000);
         alert('Welcome admin');
       } else {
