@@ -54,7 +54,7 @@ export default function Login() {
     setIsSubmitting(true);
 
     if (validate()) {
-      if (formData.email === 'admin@gmail.com' && formData.password === '12345678') {
+      if (formData.email === 'admin@gmail.com' && formData.password === '123456') {
         setTimeout(() => navigate('/dashboard'), 1000);
         alert('Welcome admin');
       } else {
